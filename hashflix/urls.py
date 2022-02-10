@@ -20,8 +20,11 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('movie.urls')),
+    path('', include('movie.urls', namespace='movie')),
 ]
+
+# namespace='movie' tem de ser o nome do app declarado em
+# app_name='movie' no arquivo movie\urls.py
 
 urlpatterns += urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

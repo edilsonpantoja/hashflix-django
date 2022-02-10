@@ -14,11 +14,13 @@ HomeFilmes Hashflix
     puxando todos os registros da tabela, isso em views.py -->
     {% for movie in object_list %}
         <hr>
-        <p>{{ movie }}</p>
+        <a href="{% url 'movie:detalhesfilme' movie.pk %}"><p>{{ movie.title }}</p></a>
         <p>{{ movie.description }}</p>
         <img src="{{ movie.thumb.url }}">
     {% endfor %}
 
 </div>
+
+
 
 {% endblock%}
