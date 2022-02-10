@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Movie
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView, DetailView
 
 
 class Homepage(TemplateView):
@@ -13,6 +13,12 @@ class Homefilmes(ListView):
     #object_list
     #o object_list vai ser passado pro html com a lista dos dados do Modelo Movie
     #quando se usa classe nao precisa passar context automaticamente o django gerencia varias coisas
+
+
+class Detalhesfilme(DetailView):
+    template_name = "detalhesfilme.html"
+    model = Movie
+    # object -> 1 item do nosso modelo
 
 
 # Create your views here.
