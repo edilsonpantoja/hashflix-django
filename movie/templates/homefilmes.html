@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+HomeFilmes Hashflix
+{% endblock %}
+
+{% block content %}
+
+<div class="py-10">
+    <h1>Essa eh a nossa Home Filmes</h1>
+    <!-- dicionario lista_filmes ta vindo da view em views.py -->
+    {% for movie in lista_filmes %}
+        <hr>
+        <p>{{ movie }}</p>
+        <p>{{ movie.description }}</p>
+        <img src="{{ movie.thumb.url }}">
+    {% endfor %}
+
+</div>
+
+{% endblock%}
