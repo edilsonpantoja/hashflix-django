@@ -9,8 +9,10 @@ HomeFilmes Hashflix
 
 <div class="py-10">
     <h1>Essa eh a nossa Home Filmes</h1>
-    <!-- dicionario lista_filmes ta vindo da view em views.py -->
-    {% for movie in lista_filmes %}
+    <!-- object_list ta vindo da view pela Classe Homefilmes
+    que esta passando o conteudo do modelo Movie, assim,
+    puxando todos os registros da tabela, isso em views.py -->
+    {% for movie in object_list %}
         <hr>
         <p>{{ movie }}</p>
         <p>{{ movie.description }}</p>
