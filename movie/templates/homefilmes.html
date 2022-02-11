@@ -18,9 +18,21 @@ HomeFilmes Hashflix
         <p>{{ movie.description }}</p>
         <img src="{{ movie.thumb.url }}">
     {% endfor %}
-
 </div>
 
+<div class="py-10">
+    <h2>Filmes Novos</h2>
+    <!-- Abaixo, fazendo chamada a funcao lista_filmes_recentes declarada no gerenciador de contexto
+     em new_contexts.py que retorna a lista de filmes ordenados por data de criacao decrescente -->
+    {{ lista_filmes_recentes }}
+</div>
+
+<div class="py-10">
+    <h2>Filmes em Alta</h2>
+    <!-- Abaixo, fazendo chamada a funcao lista_filmes_recentes declarada no gerenciador de contexto
+     em new_contexts.py que retorna a lista de filmes ordenados por data de criacao decrescente -->
+    {{ lista_filmes_emalta }}
+</div>
 
 
 {% endblock%}

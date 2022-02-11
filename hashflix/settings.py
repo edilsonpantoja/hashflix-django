@@ -52,6 +52,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'hashflix.urls'
 
+# Configuracao dos Arquivos HTML
+# na secao context_processors registramos as funcoes declaradas no gerenciador de contexto
+# em new_contexts.py, onde movie eh o nome do app, depois vem o nome do arquivo e depois o
+# o nome da funcao
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -63,6 +67,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'movie.new_contexts.lista_filmes_recentes',
+                'movie.new_contexts.lista_filmes_emalta',
             ],
         },
     },
