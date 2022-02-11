@@ -11,5 +11,16 @@ DetalheFilmes Hashflix
     <p>{{ object }}</p>
     <p>{{ object.description }}</p>
     <img src="{{ object.thumb.url }}">
+
+    <h2>Episodes</h2>
+    {% for episode in object.episodes.all %}
+        <a href="{{ episode.video }}">
+
+            <p>Episodio: {{ forloop.counter }} - {{ episode.title }} </p>
+        </a>
+    {% endfor %}
+    <!-- puxando os episodios do related_name que foi declarado
+    na classe Episodios em models.py, .all eh necessario pra
+    poder listar tudo -->
 </div>
 {% endblock %}
