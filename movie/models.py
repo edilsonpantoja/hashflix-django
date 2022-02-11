@@ -22,7 +22,20 @@ class Movie(models.Model):
     def __str__(self):
         return self.title
 
+# criar o episodio
+class Episodio(models.Model):
+    movie = models.ForeignKey("Movie", related_name="episodes", on_delete=models.CASCADE)
+    title = models.CharField(max_length=100)
+    video = models.URLField()
+    # primeiro parametro da FK eh o nome da tabela,
+    # o related_name vai ser uma lista com todos os episodios que estao associados aquele filme
+    # parametro on_delete=models.CASCADE, se o filme for deletado, ele deleta tambem os episodios
+    # que estao relacionados com aquele filme
+    def __str__(self):
+        return self.movie.title + " - " + self.title
+        #nome do filme concatenando com o nome do episodio
+
 # criar o usuario
 
-# criar o episodio
+
 
