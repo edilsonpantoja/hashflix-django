@@ -9,11 +9,11 @@ from .models import Movie
 
 def lista_filmes_recentes(request):
     # lista com todos os filmes, o sinal de menos (-) significa ordem decrescente daquele campo
-    lista_filmes = Movie.objects.all().order_by('-creation_date')
+    lista_filmes = Movie.objects.all().order_by('-creation_date')[0:8]
     #retorna uma tupla de um item so, com a lista dos filmes na ordem decrescente
     return {"lista_filmes_recentes": lista_filmes}
 
 
 def lista_filmes_emalta(request):
-    lista_filmes = Movie.objects.all().order_by('-visualizations')
+    lista_filmes = Movie.objects.all().order_by('-visualizations')[0:8]
     return {'lista_filmes_emalta': lista_filmes}
