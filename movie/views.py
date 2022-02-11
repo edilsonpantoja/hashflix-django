@@ -20,6 +20,19 @@ class Detalhesfilme(DetailView):
     model = Movie
     # object -> 1 item do nosso modelo
 
+    # Funcao pra contar as Visualizacoes
+    # toda funcao get precisa conter esses 4 argumentos
+    def get(self, request, *args, **kwargs):
+        # descobrir qual o filme ele esta acessando
+        # contabilizar a visualizacao
+        movie = self.get_object()
+        movie.visualizations += 1
+        # somar 1 nas visualizadoes daquele filme
+        movie.save()
+        # salvar
+        return super().get(request, *args, **kwargs) #redireciona o usuario para a url final
+
+
     # o codigo abaixo serve pra passar uma variavel pra uma view especifica
     # no caso utiliza-se a funcao get_context_data
     # na primeira linha da funcaco, declara-se context igual a super classe
@@ -32,6 +45,7 @@ class Detalhesfilme(DetailView):
         # self.get_object()
         # todos os filmes cuja categoria eh igual a categoria do filme que estamos acessando
         # filmes_relacionados = Movie.objects.filter(category=self.get_object().category)[0:5] pega so 5 filmes
+        # context eh um dicionario
         filmes_relacionados = Movie.objects.filter(category=self.get_object().category)
         context["filmes_relacionados"] = filmes_relacionados
         return context

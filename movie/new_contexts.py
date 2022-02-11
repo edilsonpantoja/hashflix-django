@@ -15,5 +15,5 @@ def lista_filmes_recentes(request):
 
 
 def lista_filmes_emalta(request):
-    lista_filmes = Movie.objects.all().order_by('visualizations')
+    lista_filmes = Movie.objects.all().order_by('-visualizations')
     return {'lista_filmes_emalta': lista_filmes}
