@@ -6,38 +6,85 @@ DetalheFilmes Hashflix
 {% endblock %}
 
 {% block content %}
-<div class="py-10">
-    <h1>Essa eh detalhe do filme {{ object }}</h1>
-    <p>{{ object }}</p>
-    <p>{{ object.description }}</p>
-    <p>Visuzalizacoes: {{ object.visualizations }}</p>
-    <img src="{{ object.thumb.url }}">
 
-    <h2>Episodes</h2>
-    {% for episode in object.episodes.all %}
-        <a href="{{ episode.video }}">
 
-            <p>Episodio: {{ forloop.counter }} - {{ episode.title }} </p>
-        </a>
-    {% endfor %}
-    <!-- puxando os episodios do related_name que foi declarado
-    na classe Episodios em models.py, .all eh necessario pra
-    poder listar tudo -->
-</div>
+<main class='bg-primary_black min-h-screen w-full'>
+    <section class="h-screen relative bg-no-repeat pb-8 pl-6 flex  items-end bg-cover" style="background-image: url('{{ object.thumb.url }}');">
+        <div>
+            <h2 class="text-6xl font-semibold text-white my-4">
+                {{ object.title }}
+            </h2>
+            <p class=" w-11/12 md:w-5/12 font-medium text-white my-4">
+                {{ object.description|slice:":50" }}
+            </p>
+            <div class="flex my-4">
+                <a href="{{ object.episodes.first.video }}">
+                    <button class="flex items-center bg-white py-2 px-5 rounded-md" style='color:black;'>
+                        <ion-icon name="play" class="text-2xl"></ion-icon>
+                        <span class="ml-3 font-medium">
+                            Play
+                        </span>
+                    </button>
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class='bg-primary_black flex justify-center py-10'>
+        <div class="p-8 w-10/12 relative" >
+            <h2 class="text-gray-200 text-3xl font-medium">
+                Description
+            </h2>
+            <div class="flex justify-left  items-center min-w-full  movie_lis">
+                <p class="text-gray-100 text-lg">
+                    {{ object.description }}
+                    <br>
+                    Visualizacoes: {{ object.visualizations }}
+                </p>
+            </div>
 
-<div class="py-10">
-    <h2>Filmes Relacionados</h2>
-    <!-- Gerando uma lista de filmes relacionados -->
-    {% for movie in filmes_relacionados %}
-    <p>
-        <!-- mesma estrutura de url usada em homefilmes.html onde movie eh o nome do app
-         que esta registrado em urls.py da seguinte forma
-         path('movies/<int:pk>', Detalhesfilme.as_view(), name='detalhesfilme')
-         dessa forma a primary key eh passada e a pagina de detalhe do filme relacionado eh exibida -->
-        <a href="{% url 'movie:detalhesfilme' movie.pk %}">
-            {{ movie.title }}
-        </a>
-    </p>
-    {% endfor %}
-</div>
+            <div style='margin-top:2rem;margin-bottom:2rem;'>
+                <h2 class="text-gray-200 text-3xl font-medium">
+                    Episódios
+
+                </h2>
+                {% for episode in object.episodes.all %}
+                    <h3 class='text-lg'>
+                        <a href="{{ episode.video }}">
+                            <p>Episodio: {{ forloop.counter }} - {{ episode.title }} </p>
+                        </a>
+                    </h3>
+                {% endfor %}
+                 <!-- puxando os episodios do related_name que foi declarado
+                na classe Episodios em models.py, .all eh necessario pra
+                poder listar tudo -->
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class='bg-primary_black flex justify-center py-10'>
+        <div class="p-8 w-10/12 relative" >
+            <h2 class="text-gray-200 text-2xl font-medium">
+                Relacionados
+            </h2>
+            <div class="flex flex-wrap items-center min-w-full movie_lis">
+                <!-- Gerando uma lista de filmes relacionados -->
+                {% for movie in filmes_relacionados %}
+                <div class="m-4 bg-blue-500 overflow-hidden flex-shrink-0 rounded-md cursor-pointer h-64 w-96">
+                    <a href="{% url 'movie:detalhesfilme' movie.pk %}">
+                        <img src="{{ movie.thumb.url }}" class="object-cover w-full h-full " alt="">
+                    </a>
+                </div>
+                <!-- mesma estrutura de url usada em homefilmes.html onde movie eh o nome do app
+                 que esta registrado em urls.py da seguinte forma
+                 path('movies/<int:pk>', Detalhesfilme.as_view(), name='detalhesfilme')
+                 dessa forma a primary key eh passada e a pagina de detalhe do filme relacionado eh exibida -->
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+</main>
+
 {% endblock %}
