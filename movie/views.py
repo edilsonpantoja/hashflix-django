@@ -10,7 +10,7 @@ class Homepage(TemplateView):
 class Homefilmes(ListView):
     template_name = "homefilmes.html"
     model = Movie
-    #object_list
+    #object_list -> lista de itens do modelo
     #o object_list vai ser passado pro html com a lista dos dados do Modelo Movie
     #quando se usa classe nao precisa passar context automaticamente o django gerencia varias coisas
 
@@ -20,6 +20,21 @@ class Detalhesfilme(DetailView):
     model = Movie
     # object -> 1 item do nosso modelo
 
+    # o codigo abaixo serve pra passar uma variavel pra uma view especifica
+    # no caso utiliza-se a funcao get_context_data
+    # na primeira linha da funcaco, declara-se context igual a super classe
+    # se isso nao for feito, a funcao get_context_data ira sobrescrever as instrucoes
+    # da super classe
+    def get_context_data(self, **kwargs):
+        context = super(Detalhesfilme, self).get_context_data(**kwargs)
+        # filtrar a minha tabela de filmes pegando os filmes cuja categoria eh igual
+        # a categoria do filme da pagina (object)
+        # self.get_object()
+        # todos os filmes cuja categoria eh igual a categoria do filme que estamos acessando
+        # filmes_relacionados = Movie.objects.filter(category=self.get_object().category)[0:5] pega so 5 filmes
+        filmes_relacionados = Movie.objects.filter(category=self.get_object().category)
+        context["filmes_relacionados"] = filmes_relacionados
+        return context
 
 # Create your views here.
 #def homepage(request):

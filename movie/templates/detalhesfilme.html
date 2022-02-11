@@ -23,4 +23,20 @@ DetalheFilmes Hashflix
     na classe Episodios em models.py, .all eh necessario pra
     poder listar tudo -->
 </div>
+
+<div class="py-10">
+    <h2>Filmes Relacionados</h2>
+    <!-- Gerando uma lista de filmes relacionados -->
+    {% for movie in filmes_relacionados %}
+    <p>
+        <!-- mesma estrutura de url usada em homefilmes.html onde movie eh o nome do app
+         que esta registrado em urls.py da seguinte forma
+         path('movies/<int:pk>', Detalhesfilme.as_view(), name='detalhesfilme')
+         dessa forma a primary key eh passada e a pagina de detalhe do filme relacionado eh exibida -->
+        <a href="{% url 'movie:detalhesfilme' movie.pk %}">
+            {{ movie.title }}
+        </a>
+    </p>
+    {% endfor %}
+</div>
 {% endblock %}
