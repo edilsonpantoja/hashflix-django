@@ -50,6 +50,31 @@ class Detalhesfilme(DetailView):
         context["filmes_relacionados"] = filmes_relacionados
         return context
 
+#pra criar uma View eh precisa
+#passar um Model e um Template
+class Pesquisafilme(ListView):
+    template_name = "pesquisa.html"
+    model = Movie
+
+    # funcao pra pegar o paramentro query que eh o nome
+    # da tag input na pagina homepage.html
+    # pega o que foi digitado no campo de pesquisa pelo usuario
+    # a funcao abaixo editando o object_list
+    def get_queryset(self):
+        termo_pesquisa = self.request.GET.get('query')
+        if termo_pesquisa:
+            # object_list eh o nome padrao dado para a Listview
+            #title__icontains onde title eh o nome do campo + '__icontains'
+            # ao inves de usar 'Movie', podemos usar a variavel model que esta
+            # declarada acima aqui nesta funcao, dessa forma, no futuro se precisarmos
+            # mudamos o nome do model de Movie para Episodios, por exemplo
+            # em um so lugar e nao em varios lugares na funcao
+            #object_list = Movie.objects.filter(title__icontains=termo_pesquisa)
+            object_list = self.model.objects.filter(title__icontains=termo_pesquisa)
+            return object_list
+        else:
+            return None
+
 # Create your views here.
 #def homepage(request):
 #    return render(request, "homepage.html")
