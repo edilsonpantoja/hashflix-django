@@ -1,3 +1,13 @@
+# Antes de rodar qualquer migracao:
+# Abre o Models, cria a classe de usuario
+# Adiciona o campo que quiser, pode adicionar o campo depois tb
+# Registra a classe no admin.py
+# Cria a Constante AUTH_USER_MODEL = "movie.Usuario" no settings.py
+# python manage.py createsuperuser
+# ao fazer isso da erro "IndexError: list index out of range"
+# por que definimos umas funcoes no gerenciador de contexto new_contexts.py
+# que retornam listas e como nao temos mais os filmes cadastrados as lista tao retornando 0
+
 - Home Page
 
 - Fazer Login e Criar Conta (Usuario e Autenticacao)

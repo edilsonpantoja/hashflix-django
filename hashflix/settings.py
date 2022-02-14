@@ -91,6 +91,16 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
+# App movie, classe Usuario
+AUTH_USER_MODEL = "movie.Usuario"
+
+# Se editarmos este arquivo settings.py pra mexer na classe depois de realizada a primeira migracao
+# vai dar erro, pra nao dar erro, teria de ter personalizado o usuario ja antes do primeiro migrate
+# pra nao dar erro, temos de deletar os arquivos de migracao que estao na pasta movie\migrations
+# e deletar o banco de dados db.sqlite3 que esta na raiz do projeto
+# rodar python manage.py makemigrations
+# rodar python manage.py migrate
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',

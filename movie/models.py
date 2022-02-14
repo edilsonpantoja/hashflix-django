@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import AbstractUser
 # Create your models here.
 
 
@@ -37,5 +38,10 @@ class Episodio(models.Model):
 
 # criar o usuario
 
-
+# Classe Usuario esta herdando da classe AbstractUser
+# Precisa registrar a classe no admin.py
+# O usuario aqui vai ser customizado, nao vai usar a classe padrao de usuario do Django
+# Precisa registrar no settings.py tb -> AUTH_USER_MODEL = "movie.Usuario"
+class Usuario(AbstractUser):
+    filmes_vistos = models.ManyToManyField("Movie")
 
