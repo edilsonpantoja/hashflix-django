@@ -145,3 +145,11 @@ MEDIA_ROOT = BASE_DIR / "media"
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Link pra onde o usuario sera redirecionado apos fazer login, homefilmes veio do que esta
+# registrado em urls.py
+LOGIN_REDIRECT_URL = 'movie:homefilmes'
+
+# Login onde o usuario faz Login, movie eh o nome do App
+# Tem de criar a pagina de login e criar no urls.py
+LOGIN_URL = 'movie:login'

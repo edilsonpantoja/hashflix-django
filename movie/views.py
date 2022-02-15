@@ -1,13 +1,16 @@
 from django.shortcuts import render
 from .models import Movie
 from django.views.generic import TemplateView, ListView, DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
+# LoginRequiredMixin tem de ser a primeira classe criada em uma View
+# Isso pra poder bloquear as views para usuarios nao logados
 
 class Homepage(TemplateView):
     template_name = "homepage.html"
 
 
-class Homefilmes(ListView):
+class Homefilmes(LoginRequiredMixin, ListView):
     template_name = "homefilmes.html"
     model = Movie
     #object_list -> lista de itens do modelo
@@ -15,7 +18,7 @@ class Homefilmes(ListView):
     #quando se usa classe nao precisa passar context automaticamente o django gerencia varias coisas
 
 
-class Detalhesfilme(DetailView):
+class Detalhesfilme(LoginRequiredMixin, DetailView):
     template_name = "detalhesfilme.html"
     model = Movie
     # object -> 1 item do nosso modelo
