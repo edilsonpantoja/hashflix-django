@@ -26,10 +26,14 @@ class Detalhesfilme(DetailView):
         # descobrir qual o filme ele esta acessando
         # contabilizar a visualizacao
         movie = self.get_object()
-        movie.visualizations += 1
         # somar 1 nas visualizadoes daquele filme
-        movie.save()
+        movie.visualizations += 1
         # salvar
+        movie.save()
+        # adicionar movie na lista de filmes assistidos pelo usuario
+        usuario = request.user
+        #adiciona o movie no banco de dados
+        usuario.filmes_vistos.add(movie)
         return super().get(request, *args, **kwargs) #redireciona o usuario para a url final
 
 
