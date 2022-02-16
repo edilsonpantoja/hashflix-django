@@ -93,6 +93,9 @@ class Pesquisafilme(ListView):
 class Paginaperfil(LoginRequiredMixin, TemplateView):
     template_name = "editarperfil.html"
 
+class Criarcontas(TemplateView):
+    template_name = "criarconta.html"
+
 
 # Create your views here.
 #def homepage(request):

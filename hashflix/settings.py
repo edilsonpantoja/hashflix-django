@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'movie',
+    #'crispy-forms',
+    #'crispy-bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -153,3 +155,7 @@ LOGIN_REDIRECT_URL = 'movie:homefilmes'
 # Login onde o usuario faz Login, movie eh o nome do App
 # Tem de criar a pagina de login e criar no urls.py
 LOGIN_URL = 'movie:login'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"

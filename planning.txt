@@ -8,6 +8,14 @@
 # por que definimos umas funcoes no gerenciador de contexto new_contexts.py
 # que retornam listas e como nao temos mais os filmes cadastrados as lista tao retornando 0
 
+# [Instalacado do Crispy-Bootstrap]
+# pip install django-crispy-forms
+# pip install crispy-bootstrap5
+# registrar 'crispy_forms', 'crispy_bootstrap5' no settings.py
+# adicionar as seguintes constantes no fim do arquivo settings.py
+# CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
+# CRISPY_TEMPLATE_PACK = 'bootstrap5'
+
 - Home Page
 
 - Fazer Login e Criar Conta (Usuario e Autenticacao)
