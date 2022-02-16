@@ -1,14 +1,16 @@
 from django.shortcuts import render, redirect, reverse
-from .models import Movie
-from .forms import CriarContaForm
+from .models import Movie, Usuario
+from .forms import CriarContaForm, FormHomepage
 from django.views.generic import TemplateView, ListView, DetailView, FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 # LoginRequiredMixin tem de ser a primeira classe criada em uma View
 # Isso pra poder bloquear as views para usuarios nao logados
 
-class Homepage(TemplateView):
+class Homepage(FormView):
     template_name = "homepage.html"
+    # form_class criada em forms.py
+    form_class = FormHomepage
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
@@ -16,6 +18,16 @@ class Homepage(TemplateView):
             return redirect('movie:homefilmes')
         else:
             return super().get(request, *args, **kwargs)  # redireciona o usuario para a homepage
+
+
+    def get_success_url(self):
+        email = self.request.POST.get("email")  # pega email digitado no campo do form
+        usuarios = Usuario.objects.filter(email=email) #procura o email digitado no database
+        if usuarios:
+            return reverse('movie:login')
+        else:
+            return reverse('movie:criarconta')
+            # print(self.request.POST)
 
 
 class Homefilmes(LoginRequiredMixin, ListView):
