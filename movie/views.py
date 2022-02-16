@@ -1,6 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from .models import Movie
-from django.views.generic import TemplateView, ListView, DetailView
+from .forms import CriarContaForm
+from django.views.generic import TemplateView, ListView, DetailView, FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 # LoginRequiredMixin tem de ser a primeira classe criada em uma View
@@ -93,8 +94,19 @@ class Pesquisafilme(ListView):
 class Paginaperfil(LoginRequiredMixin, TemplateView):
     template_name = "editarperfil.html"
 
-class Criarcontas(TemplateView):
+
+class Criarcontas(FormView):
     template_name = "criarconta.html"
+    form_class = CriarContaForm # esta definido em forms.py
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
+
+    #Sempre que criar um FormView, tem de dizer para onde o usuario ira apos ser logado com sucesso
+    def get_success_url(self):
+        # a funcao get_success_url espera receber uma url por isso usamos reverse ao inves de redirect
+        return reverse('movie:login')
 
 
 # Create your views here.
