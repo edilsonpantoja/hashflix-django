@@ -1,7 +1,8 @@
 # url - view - template
 
 from django.urls import path, include
-from .views import Homefilmes, Homepage, Detalhesfilme, Pesquisafilme
+# importando os arquivos .html
+from .views import Homefilmes, Homepage, Detalhesfilme, Pesquisafilme, Paginaperfil
 from django.contrib.auth import views as auth_view
 
 app_name='movie'
@@ -15,4 +16,5 @@ urlpatterns = [
     # Django ja tem uma template pra login, precisa ser importada, ver auth_view acima
     path('login/', auth_view.LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/', auth_view.LogoutView.as_view(template_name='logout.html'), name='logout'),
+    path('editarperfil/', Paginaperfil.as_view(), name='editarperfil')
 ]

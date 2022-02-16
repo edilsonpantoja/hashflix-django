@@ -89,6 +89,11 @@ class Pesquisafilme(ListView):
         else:
             return None
 
+
+class Paginaperfil(LoginRequiredMixin, TemplateView):
+    template_name = "editarperfil.html"
+
+
 # Create your views here.
 #def homepage(request):
 #    return render(request, "homepage.html")
