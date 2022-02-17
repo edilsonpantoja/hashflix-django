@@ -16,6 +16,13 @@
 # CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 # CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
+# [Deploy pro Heroku]
+# Criar 3 arquivos
+# Procfile, requirements.txt e runtime.txt
+# Instalar Pacotes
+# pip install gunicorn
+# pip install whitenoise
+
 - Home Page
 
 - Fazer Login e Criar Conta (Usuario e Autenticacao)

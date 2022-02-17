@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-hizz0+5p!5lhm3)inl@p@jdlhtk3(uxt_f58#2zb6u!)+y@w#7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False #troquei pra False pra fazer Deploy pro Heroku
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','edilsonsousa-hashflix.herokuapp.com']
 
 
 # Application definition
@@ -38,8 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'movie',
-    #'crispy-forms',
-    #'crispy-bootstrap5',
+    'crispy_forms',
+    'crispy_bootstrap5',
 ]
 
 MIDDLEWARE = [
